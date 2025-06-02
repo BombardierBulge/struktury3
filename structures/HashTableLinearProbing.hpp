@@ -9,7 +9,7 @@ private:
     std::vector<int> table;
     std::vector<bool> occupied;
 
-    int hashFunction(int key) const;
+    int hashFunction(int key);
 
 public:
     HashTableLinearProbing();

@@ -9,7 +9,7 @@ private:
     static const int SIZE = 10;
     std::vector<std::list<int>> table;
 
-    int hashFunction(int key) const;
+    int hashFunction(int key);
 
 public:
     HashTableChaining();
