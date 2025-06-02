@@ -4,13 +4,12 @@
 // Konstruktor
 HashTableChaining::HashTableChaining() {
     table.resize(SIZE);
-    
+}
 // funkcja mieszająca
-    int hashFunction(int key) const {
+    int hashFunction(int key) {
         return key % SIZE;
     }
 
-public:
 // Wstawianie klucza do odpowiedniej listy
     HashTableChaining() {
         table.resize(SIZE);
@@ -41,4 +40,3 @@ public:
             std::cout << "nullptr\n";
         }
     }
-};
