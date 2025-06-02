@@ -1,21 +1,18 @@
 #ifndef HASHTABLELINEARPROBING_HPP
 #define HASHTABLELINEARPROBING_HPP
 
-#include <vector>
-
 class HashTableLinearProbing {
 private:
-    static const int SIZE = 10;
-    std::vector<int> table;
-    std::vector<bool> occupied;
-
+    int* table;
+    bool* occupied;
+    int capacity;
     int hashFunction(int key) const;
-
 public:
-    HashTableLinearProbing();
-
+    HashTableLinearProbing(int size = 1031);
+    ~HashTableLinearProbing();
     void insert(int key);
     bool search(int key) const;
+    void remove(int key);
     void display() const;
 };
 

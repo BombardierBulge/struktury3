@@ -1,5 +1,4 @@
 #include "avltree.hpp"
-#include <algorithm>
 
 AVLTree::AVLTree() : root(nullptr) {}
 
@@ -15,6 +14,10 @@ void AVLTree::clear(AVLNode* node) {
     }
 }
 
+int AVLTree::max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
 int AVLTree::height(AVLNode* n) {
     return n ? n->height : 0;
 }
@@ -28,8 +31,8 @@ AVLNode* AVLTree::rotateRight(AVLNode* y) {
     AVLNode* T2 = x->right;
     x->right = y;
     y->left = T2;
-    y->height = std::max(height(y->left), height(y->right)) + 1;
-    x->height = std::max(height(x->left), height(x->right)) + 1;
+    y->height = max(height(y->left), height(y->right)) + 1;
+    x->height = max(height(x->left), height(x->right)) + 1;
     return x;
 }
 
@@ -38,8 +41,8 @@ AVLNode* AVLTree::rotateLeft(AVLNode* x) {
     AVLNode* T2 = y->left;
     y->left = x;
     x->right = T2;
-    x->height = std::max(height(x->left), height(x->right)) + 1;
-    y->height = std::max(height(y->left), height(y->right)) + 1;
+    x->height = max(height(x->left), height(x->right)) + 1;
+    y->height = max(height(y->left), height(y->right)) + 1;
     return y;
 }
 
@@ -47,9 +50,8 @@ AVLNode* AVLTree::insert(AVLNode* node, int key, int value) {
     if (!node) return new AVLNode(key, value);
     if (key < node->key) node->left = insert(node->left, key, value);
     else if (key > node->key) node->right = insert(node->right, key, value);
-    else { node->value = value; return node; } // update
-
-    node->height = 1 + std::max(height(node->left), height(node->right));
+    else { node->value = value; return node; }
+    node->height = 1 + max(height(node->left), height(node->right));
     int balance = getBalance(node);
 
     // LL
@@ -98,7 +100,7 @@ AVLNode* AVLTree::remove(AVLNode* node, int key) {
         }
     }
     if (!node) return node;
-    node->height = 1 + std::max(height(node->left), height(node->right));
+    node->height = 1 + max(height(node->left), height(node->right));
     int balance = getBalance(node);
 
     if (balance > 1 && getBalance(node->left) >= 0)
