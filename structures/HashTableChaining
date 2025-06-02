@@ -1,0 +1,41 @@
+#include <iostream>
+#include <list>
+#include <vector>
+
+class HashTableChaining {
+private:
+    static const int SIZE = 10;
+    std::vector<std::list<int>> table;
+
+    int hashFunction(int key) const {
+        return key % SIZE;
+    }
+
+public:
+    HashTableChaining() {
+        table.resize(SIZE);
+    }
+
+    void insert(int key) {
+        int index = hashFunction(key);
+        table[index].push_back(key);
+    }
+
+    bool search(int key) const {
+        int index = hashFunction(key);
+        for (int element : table[index]) {
+            if (element == key) return true;
+        }
+        return false;
+    }
+
+    void display() const {
+        for (int i = 0; i < SIZE; i++) {
+            std::cout << i << ": ";
+            for (int val : table[i]) {
+                std::cout << val << " -> ";
+            }
+            std::cout << "nullptr\n";
+        }
+    }
+};
