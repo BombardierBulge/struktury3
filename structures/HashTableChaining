@@ -1,26 +1,28 @@
 #include <iostream>
-#include <list>
-#include <vector>
+#include "HashTableChaining.hpp"
 
-class HashTableChaining {
-private:
-    static const int SIZE = 10;
-    std::vector<std::list<int>> table;
-
+// Konstruktor
+HashTableChaining::HashTableChaining() {
+    table.resize(SIZE);
+    
+// funkcja mieszająca
     int hashFunction(int key) const {
         return key % SIZE;
     }
 
 public:
+// Wstawianie klucza do odpowiedniej listy
     HashTableChaining() {
         table.resize(SIZE);
     }
 
+// Wstawianie klucza do odpowiedniej listy
     void insert(int key) {
         int index = hashFunction(key);
         table[index].push_back(key);
     }
 
+// Wyszukiwanie klucza w odpowiedniej liście
     bool search(int key) const {
         int index = hashFunction(key);
         for (int element : table[index]) {
@@ -29,6 +31,7 @@ public:
         return false;
     }
 
+// Wyświetlanie całej tablicy mieszającej
     void display() const {
         for (int i = 0; i < SIZE; i++) {
             std::cout << i << ": ";
