@@ -36,3 +36,6 @@ double Timer::measurement_micro() const {
 double Timer::measurement_seconds() const {
     return std::chrono::duration_cast< std::chrono::seconds>(end_time - start_time).count();
 }
+double Timer::measurement_nano() const {
+    return std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count();
+}

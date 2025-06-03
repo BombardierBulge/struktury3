@@ -6,6 +6,7 @@ private:
     int* table;
     bool* occupied;
     int capacity;
+	bool* deleted;
     int hashFunction(int key) const;
 public:
     HashTableLinearProbing(int size = 1031);

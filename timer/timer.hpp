@@ -13,6 +13,7 @@ public:
     double measurement_millis() const; // Returns elapsed time in milliseconds
     double measurement_micro() const; // Returns elapsed time in microseconds
     double measurement_seconds() const; // Returns elapsed time in seconds
+    double measurement_nano() const; // Dodaj tę linię
 private:
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time;//start time 
     
